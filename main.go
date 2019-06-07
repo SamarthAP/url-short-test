@@ -44,7 +44,6 @@ func fillMap() {
 
 func redirect(w http.ResponseWriter, r *http.Request) {
 	link := strings.TrimLeft(r.URL.Path, "/")
-	f.Println(link)
 
 	if val, ok := urlmap[link]; ok {
 		http.Redirect(w, r, val, 308)
@@ -53,8 +52,10 @@ func redirect(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	fillMap()
+
 	http.HandleFunc("/", redirect)
 	f.Println("Server running on port 9000")
+
 	err := http.ListenAndServe(":9000", nil)
 	if err != nil {
 		log.Fatal("ListenAndServe:", err)
