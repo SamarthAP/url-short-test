@@ -46,7 +46,7 @@ func redirect(w http.ResponseWriter, r *http.Request) {
 	link := strings.TrimLeft(r.URL.Path, "/")
 
 	if val, ok := urlmap[link]; ok {
-		http.Redirect(w, r, val, 308)
+		http.Redirect(w, r, val, 302)
 	}
 }
 
